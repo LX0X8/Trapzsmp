@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Trapz SMP Store</title>
-</head>
-<body>
-    <h1>Welcome to Trapz SMP!</h1>
-    <p>Store coming soon.</p>
-</body>
-</html>
+<div id="player-count">
+Loading players...
+</div>
+
+<script>
+fetch("trapz.crystalgodgamer.workers.dev")
+  .then(response => response.json())
+  .then(data => {
+    if (data.online) {
+      document.getElementById("player-count").innerHTML =
+        `🟢 ${data.players}/${data.max} Players Online`;
+    } else {
+      document.getElementById("player-count").innerHTML =
+        "🔴 Server Offline";
+    }
+  });
+</script>
